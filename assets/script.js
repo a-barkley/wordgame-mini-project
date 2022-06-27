@@ -13,10 +13,20 @@ function timer () {
     }, 1000)
 }
 
-timer()
-
 // Start Button Functionality
+var Button = document.querySelector("#start")
+
+Button.addEventListener("click", function(){
+    timer()
+}
+)
+
 // Input box
+document.addEventListener("keydown", input);
+function input(event) {
+    document.querySelector("#input").innerHTML = "Guess :" + event.key;
+  }
+
 // Answer display
 // Stats Box
 // Logic for comparing input to answer
