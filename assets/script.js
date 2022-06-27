@@ -28,6 +28,27 @@ function input(event) {
   }
 
 // Answer display
-// Stats Box
+var answers = ["lambent","precocious","frantic","accord","forsake"]
+
+var selection = answers[Math.floor(Math.random()*5)]
+  console.log(selection)
+
+var display = selection.split('')
+    console.log(display);
+
+var answer = document.querySelector("#answer");
+answerArr = [];
+
+function generate(){    
+    for(var i = 0;i<display.length;i++){
+        answerArr.push("_");
+    }
+    answer.textContent = answerArr.join(" ")
+}
+generate()
+console.log(answer);
+
+
 // Logic for comparing input to answer
+// Stats Box
 // Local storage to store win/loss
