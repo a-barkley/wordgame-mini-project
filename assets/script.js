@@ -27,6 +27,8 @@ function input(event) {
     document.querySelector("#input").innerHTML = "Guess :" + event.key;
   }
 
+var keyPress = document.querySelector("#input")
+
 // Answer display
 var answers = ["lambent","precocious","frantic","accord","forsake"]
 
@@ -50,5 +52,23 @@ console.log(answer);
 
 
 // Logic for comparing input to answer
+function compare() {
+    for(var i = 0 ; i < display.length; i++){
+        if (keyPress.key === display[i]) {
+            answerArr[i] = keyPress.key;
+        }
+    }
+}
+
+
+// for loop to get through each character
+// if input === display
+// replace correct underscore with input 
+// if no more underscores
+// stop timer and give alert with message
+
 // Stats Box
+// Display variables for wins and losses
+
 // Local storage to store win/loss
+// Store wins and losses with stringify
