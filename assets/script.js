@@ -1,6 +1,6 @@
 // Timer
 var timerElement = document.querySelector("#timer")
-var seconds = 60;
+var seconds = 10;
 
 function timer () {
     var timerInterval = setInterval(function () {
@@ -8,8 +8,8 @@ function timer () {
         timerElement.textContent = "Timer: " + seconds;
         if (seconds === 0 || underscoreCount === 0) {
             clearInterval(timerInterval);
+            scoreCount()
         } 
-        console.log(seconds);
     }, 1000)
 }
 
@@ -27,7 +27,6 @@ document.addEventListener("keydown", input);
 function input(event) {
     document.querySelector("#input").innerHTML = "Guess :" + event.key;
     keyPress = event.key
-    console.log(keyPress)
     compare()
 }
 
@@ -37,7 +36,6 @@ var keyPress = document.querySelector("#input")
 var answers = ["lambent","precocious","frantic","accord","forsake"]
 
 var selection = answers[Math.floor(Math.random()*5)]
-  console.log(selection)
 
 var display = selection.split('')
     console.log(display);
@@ -52,7 +50,7 @@ function generate(){
     answer.textContent = answerArr.join(" ")
 }
 generate()
-console.log(answer);
+getScores()
 
 var underscoreCount = display.length
 
@@ -78,6 +76,31 @@ function compare() {
 
 // Stats Box
 // Display variables for wins and losses
+var win = 0
+var loss = 0
+
+function getScores(){
+    win = localStorage.getItem('win')
+    loss = localStorage.getItem('loss')
+    document.querySelector("#stats").innerHTML = "Wins :" + win + "\n Loss : " + loss;
+}
+
+
+function scoreCount(){
+    if (underscoreCount === 0){
+        win++
+        localStorage.setItem("win", win)
+        console.log(win)
+        console.log(loss)
+    } else if (seconds === 0) {
+        loss++
+        localStorage.setItem("loss", loss)
+        console.log(win)
+        console.log(loss)
+    }
+}
+
+
 
 // Local storage to store win/loss
 // Store wins and losses with stringify
