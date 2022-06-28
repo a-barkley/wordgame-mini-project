@@ -6,7 +6,7 @@ function timer () {
     var timerInterval = setInterval(function () {
         seconds--;
         timerElement.textContent = "Timer: " + seconds;
-        if (seconds === 0) {
+        if (seconds === 0 || underscoreCount === 0) {
             clearInterval(timerInterval);
         } 
         console.log(seconds);
@@ -22,10 +22,14 @@ Button.addEventListener("click", function(){
 )
 
 // Input box
+var keyPress = ""
 document.addEventListener("keydown", input);
 function input(event) {
     document.querySelector("#input").innerHTML = "Guess :" + event.key;
-  }
+    keyPress = event.key
+    console.log(keyPress)
+    compare()
+}
 
 var keyPress = document.querySelector("#input")
 
@@ -50,14 +54,19 @@ function generate(){
 generate()
 console.log(answer);
 
+var underscoreCount = display.length
 
 // Logic for comparing input to answer
 function compare() {
     for(var i = 0 ; i < display.length; i++){
-        if (keyPress.key === display[i]) {
-            answerArr[i] = keyPress.key;
+        if (keyPress === display[i]) {
+            answerArr[i] = keyPress;
+            underscoreCount--
+            console.log(underscoreCount)
         }
     }
+
+    answer.textContent = answerArr.join(" ")
 }
 
 
